@@ -27,6 +27,7 @@ router.delete('/:id', [
     check('id').custom(existsUser),
     validateFields
 ],delUser)
+
 router.put('/:id', [
     check('id','No es un id correcto').isMongoId(),
     check('id').custom(existsUser),
