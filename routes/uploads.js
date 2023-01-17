@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
-const {upload, updateImage, getImage} = require('../controllers/uploads')
+const {upload, updateImage, getImage, updateImageCloud} = require('../controllers/uploads')
 const {validateFields} = require('../helpers/validate-fields')
 
 
@@ -12,7 +12,8 @@ router.put('/:collection/:id', [
     check('id','El id debe ser de mongo').isMongoId(),
     check('collection').isIn(['users','cervezas']),
     validateFields
-], updateImage)
+],updateImageCloud)
+// ], updateImage)
 
 router.get('/:collection/:id', [
     check('id','El id debe ser de mongo').isMongoId(),
