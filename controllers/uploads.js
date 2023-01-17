@@ -90,8 +90,8 @@ const getImage = async (req = request, res = response) => {
                 return res.sendFile(imagePath)
             }
         }
-
-        res.status(400).json({msg: 'image not found'});
+        const notFound = path.join(__dirname, '../assets', 'download.png')
+        res.status(200).sendFile(notFound)
 
     }
     catch(msg){
