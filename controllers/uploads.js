@@ -85,7 +85,7 @@ const updateImageCloud = async (req = request, res = response) => {
                 model = await Cerveza.findById(id)
                 break;
         }
-
+        
         //Si tiene atributo img y existe el fichero lo eliminamos
         if (model.img) {
             const nombreArr = modelo.img.split('/');
