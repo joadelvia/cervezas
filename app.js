@@ -22,6 +22,7 @@ app.use( fileUpload({
     createParentPath: true
 }));
 //ROUTES
+app.get('/', (req,res)=> res.send('Api cervezas running'))
 app.use('/cervezas', cervezas)
 app.use('/users', users)
 app.use('/auth', auth)
