@@ -6,7 +6,8 @@ cloudinary.config(process.env.CLOUDINARY_URL);
 
 const { uploadFile } = require('../helpers/uploadFile');
 const User = require('../models/usuario');
-const Cerveza = require('../models/cerveza')
+const Cerveza = require('../models/cerveza');
+const { log } = require('console');
 
 
 const upload = async (req, res = response) => {
@@ -87,13 +88,13 @@ const updateImageCloud = async (req = request, res = response) => {
         }
         
         //Si tiene atributo img y existe el fichero lo eliminamos
-        if (model.img) {
+        if (model.img && model.img.startsWith('http')) {
             const nombreArr = modelo.img.split('/');
             const nombre = nombreArr[nombreArr.length - 1];
             const [public_id] = nombre.split('.');
             cloudinary.uploader.destroy(public_id);
         }
-
+        
         const { tempFilePath } = req.files.file;
         const { secure_url } = await cloudinary.uploader.upload( tempFilePath);
         model.img = secure_url;
@@ -102,6 +103,7 @@ const updateImageCloud = async (req = request, res = response) => {
 
     }
     catch (msg) {
+        console.log('Catch error');
         return res.status(400).json({ msg })
     }
     // Subir el fichero a la carpeta con el nombre de la colección recibida y en el caso

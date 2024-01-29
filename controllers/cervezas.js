@@ -28,9 +28,12 @@ async function addBeer(req = request, res = response) {
     // const beer = req.body
     // const inserted = db.cervezas.save(beer)
     // res.json(inserted)
+    const userC = req.user
+    console.log(req.user)
+    const user = userC._id
+    console.log(user)
     const { Nombre, Descripción, Graduación, Envase, Precio } = req.body;
-    const cerveza = new Cerveza({ Nombre, Descripción, Graduación, Envase, Precio });
-
+    const cerveza = new Cerveza({ Nombre, Descripción, Graduación, Envase, Precio, user });
 
     // Guardar en BD
     await cerveza.save();

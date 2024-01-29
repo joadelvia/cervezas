@@ -24,6 +24,10 @@ const CervezaSchema = Schema({
     },
     img: {
         type: String
+    },
+    user: {
+        type: String,
+        required: true
     }
 });
 
